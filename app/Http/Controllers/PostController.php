@@ -55,5 +55,46 @@ class PostController extends Controller
         $post = Post::find(2);
         $post->delete();
         dd('deleted');
+
+        //восстановление из мусорки
+        //$post = Post::withTrashed()->find(2);
+        //$post->restore();
+    }
+
+    //firstOrCreate
+    //updateOrCreate
+
+    public function firstOrCreate(){
+        $array =
+        [
+            'title' => 'firstOrCreate',
+            'content' => 'firstOrCreate',
+            'image' => 'firstOrCreate',
+            'likes' => 300,
+            'is_published' => 0,
+        ];
+        $post = Post::firstOrCreate(
+        [
+            'title' => 'firstOrCreate',
+        ],$array);
+        dump ($post->title);
+        dd('finish');
+    }
+
+    public function updateOrCreate(){
+        $array = 
+        [
+            'title' => 'title of post',
+            'content' => 'updateOrCreate',
+            'image' => 'updateOrCreate',
+            'likes' => 300,
+            'is_published' => 0,
+        ];
+        $post = Post::updateOrCreate(
+        [
+            'title' => 'title of post',
+        ],$array);
+        dump ($post->title);
+        dd('finish');
     }
 }
