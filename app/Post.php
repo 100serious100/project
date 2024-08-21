@@ -13,4 +13,9 @@ class Post extends Model
     protected $guarded = []; //разрешение на добавление объектов в бд
     // protected $guarded = false; //разрешение на добавление объектов в бд
     // protected $fillable = ['title', 'content'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }
